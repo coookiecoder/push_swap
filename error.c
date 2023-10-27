@@ -12,15 +12,8 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	error(void)
 {
-	t_list	*list_a;
-	t_list	*list_b;
-
-	//check(argc, argv);
-	list_a = setup(argc, argv);
-	print_list(list_a);
-	list_b = NULL;
-	//solve(list_a, list_b);
-	return (0);
+	write(2, "Error\n", 6);
+	exit(1);
 }

@@ -10,17 +10,38 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef PUSH_SWAP_H
+# define PUSH_SWAP_H
 
-int	main(int argc, char **argv)
-{
-	t_list	*list_a;
-	t_list	*list_b;
+# include <stdlib.h>
+# include <unistd.h>
 
-	//check(argc, argv);
-	list_a = setup(argc, argv);
-	print_list(list_a);
-	list_b = NULL;
-	//solve(list_a, list_b);
-	return (0);
-}
+typedef struct s_list {
+	struct s_list	*next;
+	int				data;
+}	t_list;
+
+//function in error.c
+
+void	error(void);
+
+//function in check.c
+
+void	check(int argc, char **argv);
+
+//function in setup.c
+
+t_list	*setup(int argc, char **argv);
+
+//function in list.c
+
+t_list	*create(int *data, int len);
+void	clear_list(t_list *list);
+void	print_list(t_list *list);
+
+//function in ft_atoi.c
+
+int		ft_atoi(const char *nptr, int *cursor_nptr);
+
+
+#endif
