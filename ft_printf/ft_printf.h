@@ -10,17 +10,20 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#ifndef FT_PRINTF_H
+# define FT_PRINTF_H
 
-int	main(int argc, char **argv)
-{
-	t_list	*list_a;
-	t_list	*list_b;
+# include <unistd.h>
+# include <stdarg.h>
 
-	//check(argc, argv);
-	list_a = setup(argc, argv);
-	print_list(list_a);
-	list_b = NULL;
-	//solve(list_a, list_b);
-	return (0);
-}
+size_t	ft_strlen(const char *s);
+int		ft_putchar_fd(char c, int fd);
+int		ft_putstr_fd(char *s, int fd);
+int		ft_putnbr_fd(long long int n, int fd);
+int		ft_putunbr_fd(unsigned int n, int fd);
+int		ft_puthexl_fd(unsigned int number, int fd);
+int		ft_puthexu_fd(unsigned int number, int fd);
+int		ft_putptr_fd(void *ptr, int fd);
+int		ft_printf(const char *s, ...);
+
+#endif

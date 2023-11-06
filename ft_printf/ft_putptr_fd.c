@@ -10,59 +10,57 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "ft_printf.h"
 
 static
-int	*extend(int *buffer, int buffer_len, int value)
+char	get_digit(void *ptr, int digit)
 {
-	int	*result;
-	int	cursor;
+	unsigned long long	number;
 
-	if (!buffer)
+	number = (unsigned long long)ptr;
+	while (digit)
 	{
-		result = malloc(sizeof(int));
-		if (!result)
-			error();
-		*result = value;
-		return (result);
+		number = number / 16;
+		digit--;
 	}
-	result = malloc((buffer_len + 1) * sizeof(int));
-	if (!result)
-	{
-		free(buffer);
-		error();
-	}
-	cursor = -1;
-	while (cursor++ < buffer_len - 1)
-		*(result + cursor) = *(buffer + cursor);
-	return (free(buffer), result);
+	number = number % 16;
+	if (number <= 9)
+		return (number + '0');
+	else
+		return (number - 10 + 'a');
 }
 
-t_list	*setup(int argc, char **argv)
+static
+void	init(int *digit, int *result, int *start_print)
 {
-	int		*buffer;
-	int		buffer_len;
-	int		csr_argc;
-	int		csr_argv;
-	t_list	*result;
+	*digit = 15;
+	*result = 2;
+	*start_print = 0;
+}
 
-	buffer = NULL;
-	buffer_len = 0;
-	csr_argc = 1;
-	csr_argv = 0;
-	while (csr_argc < argc)
+int	ft_putptr_fd(void *ptr, int fd)
+{
+	int	digit;
+	int	result;
+	int	start_print;
+
+	if (!ptr)
+		return (write(fd, "0x0", 3));
+	init(&digit, &result, &start_print);
+	if (ft_putchar_fd('0', fd) == -1)
+		return (-1);
+	if (ft_putchar_fd('x', fd) == -1)
+		return (-1);
+	while (digit >= 0)
 	{
-		if (!*(*(argv + csr_argc) + csr_argv))
+		if (get_digit(ptr, digit) != '0' || start_print)
 		{
-			csr_argv = 0;
-			csr_argc++;
+			if (ft_putchar_fd(get_digit(ptr, digit), fd) == -1)
+				return (-1);
+			start_print = 1;
+			result++;
 		}
-		else if (*(*(argv + csr_argc) + csr_argv) != ' ')
-			buffer = extend(buffer, buffer_len, \
-			ft_atoi(*(argv + csr_argc) + csr_argv, &csr_argc));
-		else
-			csr_argv++;
+		digit--;
 	}
-	result = create(buffer, 1);
 	return (result);
 }

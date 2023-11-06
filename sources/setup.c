@@ -12,38 +12,58 @@
 
 #include "push_swap.h"
 
-t_list	*create(int *data, int len)
+static
+int	*extend(int *buffer, int buffer_len, int value)
 {
-	int		cursor;
-	t_list	*result;
-	t_list	*buffer;
+	int	*result;
+	int	cursor;
 
-	cursor = 0;
-	result = malloc(sizeof(t_list));
 	if (!buffer)
-		error();
-	buffer = result;
-	buffer->data = *data;
-	cursor++;
-	while (cursor < len)
 	{
-		buffer->next = malloc(sizeof(t_list));
-		buffer = buffer->next;
-		if (!buffer)
+		result = malloc(sizeof(int));
+		if (!result)
 			error();
-		buffer->data = *(data + cursor);
-		cursor++;
+		*result = value;
+		return (result);
 	}
-	return (result);
+	result = malloc((buffer_len + 1) * sizeof(int));
+	if (!result)
+	{
+		free(buffer);
+		error();
+	}
+	cursor = -1;
+	while (cursor++ < buffer_len - 1)
+		*(result + cursor) = *(buffer + cursor);
+	*(result + cursor) = value;
+	return (free(buffer), result);
 }
 
-//this function is for debug only not use in the actual programm
-
-void	print_list(t_list *list)
+t_list	*setup(int argc, char **argv)
 {
-	while (list->next)
+	int		*buffer;
+	int		buffer_len;
+	int		csr_argc;
+	int		csr_argv;
+	t_list	*result;
+
+	buffer = NULL;
+	buffer_len = 0;
+	csr_argc = 1;
+	csr_argv = 0;
+	while (csr_argc < argc)
 	{
-		ft_printf("%i", list->data);
-		list = list->next;
+		if (!*(*(argv + csr_argc) + csr_argv))
+		{
+			csr_argv = 0;
+			csr_argc++;
+		}
+		else if (*(*(argv + csr_argc) + csr_argv) != ' ')
+			buffer = extend(buffer, buffer_len++, \
+			ft_atoi(*(argv + csr_argc) + csr_argv, &csr_argv));
+		else
+			csr_argv++;
 	}
+	result = create(buffer, buffer_len);
+	return (result);
 }

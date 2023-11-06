@@ -10,38 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
+#include "ft_printf.h"
 
-# include <stdlib.h>
-# include <unistd.h>
-
-typedef struct s_list {
-	struct s_list	*next;
-	int				data;
-}	t_list;
-
-//function in error.c
-
-void	error(void);
-
-//function in check.c
-
-void	check(int argc, char **argv);
-
-//function in setup.c
-
-t_list	*setup(int argc, char **argv);
-
-//function in list.c
-
-t_list	*create(int *data, int len);
-void	clear_list(t_list *list);
-void	print_list(t_list *list);
-
-//function in ft_atoi.c
-
-int		ft_atoi(const char *nptr, int *cursor_nptr);
-
-
-#endif
+int	ft_putchar_fd(char c, int fd)
+{	
+	return (write(fd, &c, 1));
+}
