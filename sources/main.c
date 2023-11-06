@@ -15,12 +15,10 @@
 int	main(int argc, char **argv)
 {
 	t_list	*list_a;
-	//t_list	*list_b;
+	t_list	*list_b;
 
 	check(argc, argv);
 	list_a = setup(argc, argv);
-	print_list(list_a);
-	//list_b = NULL;
-	//solve(list_a, list_b);
+	list_b = setup(argc, argv);
 	return (0);
 }

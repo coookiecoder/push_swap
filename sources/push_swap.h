@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/06 14:11:03 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/06 15:32:16 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,5 +45,21 @@ void	print_list(t_list *list);
 
 int		ft_atoi(const char *nptr, int *cursor_nptr);
 
+//function in swap.c
+
+void	ss(t_list **list_a, t_list **list_b);
+void	sx(t_list **list);
+
+//function in push.c
+
+void	pa(t_list **list_a, t_list **list_b);
+void	pb(t_list **list_a, t_list **list_b);
+
+//functoin in rotate.c
+
+void	rr(t_list **list_a, t_list **list_b);
+void	rx(t_list **list);
+void	rrr(t_list **list_a, t_list **list_b);
+void	rrx(t_list **list);
 
 #endif

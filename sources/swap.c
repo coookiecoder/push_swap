@@ -12,8 +12,21 @@
 
 #include "push_swap.h"
 
-void	solve(t_list *list_a, t_list *list_b)
+void	ss(t_list **list_a, t_list **list_b)
 {
-	(void) list_a;
-	(void) list_b;
+	sx(list_a);
+	sx(list_b);
+}
+
+void	sx(t_list **list)
+{
+	t_list	*buffer;
+
+	if (list && *list && (*list)->next)
+	{
+		buffer = (*list)->next;
+		(*list)->next = (*list)->next->next;
+		buffer->next = (*list);
+		(*list) = buffer;
+	}
 }

@@ -61,4 +61,6 @@ void	check(int argc, char **argv)
 		else
 			error();
 	}
+	if (argc == 1)
+		error();
 }

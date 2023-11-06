@@ -1,4 +1,4 @@
-files = atoi check error list main setup solve
+files = atoi check error list main setup swap push rotate solve
 
 sources = $(foreach buffer, $(files), sources/$(buffer).c)
 
