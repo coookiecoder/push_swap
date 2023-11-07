@@ -20,5 +20,6 @@ int	main(int argc, char **argv)
 	check(argc, argv);
 	list_a = setup(argc, argv);
 	list_b = setup(argc, argv);
+	solve(&list_a, &list_b);
 	return (0);
 }

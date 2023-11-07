@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/06 15:32:16 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/07 19:43:38 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,15 @@ void	sx(t_list **list);
 void	pa(t_list **list_a, t_list **list_b);
 void	pb(t_list **list_a, t_list **list_b);
 
-//functoin in rotate.c
+//function in rotate.c
 
 void	rr(t_list **list_a, t_list **list_b);
 void	rx(t_list **list);
 void	rrr(t_list **list_a, t_list **list_b);
 void	rrx(t_list **list);
+
+//function in solve.c
+
+void	solve(t_list **list_a, t_list **list_b);
 
 #endif

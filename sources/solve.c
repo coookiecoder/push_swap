@@ -12,7 +12,7 @@
 
 #include "push_swap.h"
 
-void	solve(t_list *list_a, t_list *list_b)
+void	solve(t_list **list_a, t_list **list_b)
 {
 	(void) list_a;
 	(void) list_b;

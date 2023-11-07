@@ -12,12 +12,41 @@
 
 #include "push_swap.h"
 
+static
+int	intchr(int *data, int sample, int len)
+{
+	int	cursor;
+
+	cursor = 0;
+	while (cursor < len)
+		if (*(cursor + data) == sample)
+			return (1);
+	return (0);
+}
+
+static
+void	check_duplicate(int *data, int len)
+{
+	int	cursor;
+
+	cursor = 0;
+	while (cursor < len)
+	{
+		if (intchr(data, *(data + cursor), len))
+		{
+			free(data);
+			error();
+		}
+	}
+}
+
 t_list	*create(int *data, int len)
 {
 	int		cursor;
 	t_list	*result;
 	t_list	*buffer;
 
+	check_duplicate(data, len);
 	cursor = 0;
 	result = malloc(sizeof(t_list));
 	if (!result)
@@ -36,15 +65,4 @@ t_list	*create(int *data, int len)
 	}
 	buffer->next = NULL;
 	return (result);
-}
-
-//this function is for debug only not use in the actual programm
-
-void	print_list(t_list *list)
-{
-	while (list)
-	{
-		ft_printf("%i\n", list->data);
-		list = list->next;
-	}
 }
