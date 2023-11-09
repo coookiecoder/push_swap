@@ -6,12 +6,14 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/07 19:43:38 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/09 10:36:13 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
+
+# include <stdio.h>
 
 # include <stdlib.h>
 # include <unistd.h>
@@ -38,8 +40,12 @@ t_list	*setup(int argc, char **argv);
 //function in list.c
 
 t_list	*create(int *data, int len);
-void	clear_list(t_list *list);
-void	print_list(t_list *list);
+
+//function in list_utils.c
+
+int		find_max(t_list *list);
+int		find_min(t_list *list);
+int		get_last_data(t_list *list, int offset);
 
 //function in ft_atoi.c
 

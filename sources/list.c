@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
+/*   list.c                                             :+:      :+:    :+:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: the-day-it-was updated by UwU                                   */
+/*   Updated: 2023/11/09 11:27:16 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,17 @@
 static
 int	intchr(int *data, int sample, int len)
 {
+	int	occurence;
 	int	cursor;
 
+	
 	cursor = 0;
+	occurence = 0;
 	while (cursor < len)
-		if (*(cursor + data) == sample)
-			return (1);
+		if (*(cursor++ + data) == sample)
+			occurence++;
+	if (occurence != 1)
+		return (1);
 	return (0);
 }
 
@@ -32,7 +37,7 @@ void	check_duplicate(int *data, int len)
 	cursor = 0;
 	while (cursor < len)
 	{
-		if (intchr(data, *(data + cursor), len))
+		if (intchr(data, *(data + cursor++), len))
 		{
 			free(data);
 			error();
