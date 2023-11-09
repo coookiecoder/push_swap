@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/09 10:36:13 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/09 12:31:44 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ t_list	*create(int *data, int len);
 int		find_max(t_list *list);
 int		find_min(t_list *list);
 int		get_last_data(t_list *list, int offset);
+void	reset_and_pb(t_list **list_a, t_list **list_b);
 
 //function in ft_atoi.c
 

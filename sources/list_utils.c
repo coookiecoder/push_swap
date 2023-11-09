@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/09 10:37:20 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/09 13:09:42 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,12 +45,13 @@ int	get_len(t_list *list)
 {
 	int	len;
 
+	len = 0;
 	while (list)
 	{
 		list = list->next;
 		len++;
 	}
-	return len;
+	return (len);
 }
 
 int	get_last_data(t_list *list, int offset)
@@ -66,4 +67,15 @@ int	get_last_data(t_list *list, int offset)
 		cursor++;
 	}
 	return (list->data);
+}
+
+void	reset_and_pb(t_list **list_a, t_list **list_b)
+{
+	while ((*list_b)->data < get_last_data(*list_b, 0))
+	{
+		rx(list_b);
+		write(1, "rb\n", 3);
+	}
+	pb(list_a, list_b);
+	write(1, "pb\n", 3);
 }
