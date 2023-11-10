@@ -89,21 +89,42 @@ void	do_cheapest(t_list **list_a, t_list **list_b)
 	write(1, "pb\n", 3);
 }
 
-void	solve(t_list **list_a, t_list **list_b)
+static
+void	check_rra(t_list **list_a, t_list **list_b, int *moved)
 {
+	if (get_last_data(*list_a, 0) > (*list_b)->data && *moved < 3)
+	{
+		rrx(list_a);
+		write(1, "rra\n", 4);
+		*moved = *moved + 1;
+	}
+	else
+	{
+		pa(list_a, list_b);
+		write(1, "pa\n", 3);
+	}
+}
+
+int	solve(t_list **list_a, t_list **list_b)
+{
+	int	moved;
+
+	moved = 0;
 	pb(list_a, list_b);
 	write(1, "pb\n", 3);
-	pb(list_a, list_b);
-	write(1, "pb\n", 3);
-	while (*list_a)
+	if (get_len(*list_a) > 4)
+		{
+			pb(list_a, list_b);
+			write(1, "pb\n", 3);
+		}
+	while ((*list_a)->next->next && (*list_a)->next->next->next)
 		do_cheapest(list_a, list_b);
 	if (cost_to_reset_rb(*list_b) < cost_to_reset_rrb(*list_b))
 		reset_rb(list_b);
 	else
 		reset_rrb(list_b);
+	solve_3(list_a);
 	while (*list_b)
-	{
-		pa(list_a, list_b);
-		write(1, "pa\n", 3);
-	}
+		check_rra(list_a, list_b, &moved);
+	return (3 - moved);
 }

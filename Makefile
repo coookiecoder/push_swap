@@ -1,4 +1,4 @@
-files = atoi check error list list_utils main setup swap push rotate find_cost reset solve
+files = atoi check error list list_utils main setup swap push rotate find_cost reset solve_3 solve
 
 sources = $(foreach buffer, $(files), sources/$(buffer).c)
 

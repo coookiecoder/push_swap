@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/10 15:32:02 by abareux          ###   ########.fr       */
+/*   Updated: the-day-it-was updated by UwU                                   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	clear_list(t_list **list);
 
 int		find_max(t_list *list);
 int		find_min(t_list *list);
+int		get_len(t_list *list);
 int		get_last_data(t_list *list, int offset);
 void	reset_and_pb(t_list **list_a, t_list **list_b);
 
@@ -73,7 +74,11 @@ void	rrx(t_list **list);
 
 //function in solve.c
 
-void	solve(t_list **list_a, t_list **list_b);
+int		solve(t_list **list_a, t_list **list_b);
+
+//function in solve_3.c
+
+void	solve_3(t_list **list);
 
 //function in find_cost.c
 

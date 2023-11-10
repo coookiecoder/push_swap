@@ -12,53 +12,47 @@
 
 #include "push_swap.h"
 
-int	sorted(t_list *list)
+static
+int	list_state(t_list *list)
 {
-	while (list->next && list->data < list->next->data)
-		list = list->next;
-	list = list->next;
-	if (!list)
-		return (1);
-	return (0);
+	int	nb1;
+	int	nb2;
+	int	nb3;
+
+	nb1 = list->data;
+	nb2 = list->next->data;
+	nb3 = list->next->next->data;
+	if (nb3 > nb1 && nb1 > nb2)
+		return (213);
+	else if (nb1 > nb2 && nb2 > nb3)
+		return (321);
+	else if (nb1 > nb3 && nb3 > nb2)
+		return (312);
+	else if (nb2 > nb3 && nb3 > nb1)
+		return (132);
+	else if (nb2 > nb1 && nb1 > nb3)
+		return (231);
+	return (123);
 }
 
-void	make_left_rra(t_list **list_a, int left_rra)
+void	solve_3(t_list **list)
 {
-	if (get_len(*list_a) == 3 || get_len(*list_a) == 2)
-		return ;
-	while (left_rra)
+	int		state;
+
+	state = list_state(*list);
+	if (state == 132 || state == 321 || state == 213)
 	{
-		rrx(list_a);
+		sx(list);
+		write(1, "sa\n", 3);
+	}
+	if (state == 312 || state == 132)
+	{
+		rx(list);
+		write(1, "ra\n", 3);
+	}
+	if (state == 231 || state == 321)
+	{
+		rrx(list);
 		write(1, "rra\n", 4);
-		left_rra--;
 	}
-}
-
-int	main(int argc, char **argv)
-{
-	t_list	*list_a;
-	t_list	*list_b;
-	int		left_rra;
-
-	check(argc, argv);
-	list_a = setup(argc, argv);
-	list_b = NULL;
-	left_rra = 0;
-	if (get_len(list_a) == 1 || sorted(list_a))
-		return (0);
-	if (get_len(list_a) == 2)
-	{
-		if (list_a->data > list_a->next->data)
-		{
-			rrx(&list_a);
-			write(1, "rra\n", 4);
-		}
-	}
-	if (get_len(list_a) == 3)
-		solve_3(&list_a);
-	if (get_len(list_a) > 3)
-		left_rra = solve(&list_a, &list_b);
-	make_left_rra(&list_a, left_rra);
-	clear_list(&list_a);
-	return (0);
 }

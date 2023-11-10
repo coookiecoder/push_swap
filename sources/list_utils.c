@@ -40,7 +40,6 @@ int	find_min(t_list *list)
 	return (min);
 }
 
-static
 int	get_len(t_list *list)
 {
 	int	len;
