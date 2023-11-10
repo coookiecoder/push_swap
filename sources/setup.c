@@ -65,5 +65,5 @@ t_list	*setup(int argc, char **argv)
 			csr_argv++;
 	}
 	result = create(buffer, buffer_len);
-	return (result);
+	return (free(buffer), result);
 }

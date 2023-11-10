@@ -51,7 +51,7 @@ int	ft_atoi(const char *nptr, int *cursor_nptr)
 	}
 	while (ft_isdigit(*(nptr + cursor)))
 	{
-		result = (result * 10)+ *((char *)nptr + cursor++) - '0';
+		result = (result * 10) + *((char *)nptr + cursor++) - '0';
 		*cursor_nptr = *cursor_nptr + 1;
 	}
 	if (!cursor)

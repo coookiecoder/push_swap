@@ -12,15 +12,20 @@
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	reset_rb(t_list **list_b)
 {
-	t_list	*list_a;
-	t_list	*list_b;
+	while ((*list_b)->data < get_last_data(*list_b, 0))
+	{
+		rx(list_b);
+		write(1, "rb\n", 3);
+	}
+}
 
-	check(argc, argv);
-	list_a = setup(argc, argv);
-	list_b = NULL;
-	solve(&list_a, &list_b);
-	clear_list(&list_a);
-	return (0);
+void	reset_rrb(t_list **list_b)
+{
+	while ((*list_b)->data < get_last_data(*list_b, 0))
+	{
+		rrx(list_b);
+		write(1, "rrb\n", 4);
+	}
 }

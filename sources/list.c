@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   list.c                                             :+:      :+:    :+:   */
+/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/09 11:27:16 by abareux          ###   ########.fr       */
+/*   Updated: the-day-it-was updated by UwU                                   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ int	intchr(int *data, int sample, int len)
 	int	occurence;
 	int	cursor;
 
-	
 	cursor = 0;
 	occurence = 0;
 	while (cursor < len)
@@ -70,4 +69,26 @@ t_list	*create(int *data, int len)
 	}
 	buffer->next = NULL;
 	return (result);
+}
+
+int	get_next_data(t_list *list, int data)
+{
+	while (list->data != data)
+		list = list->next;
+	return (list->next->data);
+}
+
+void	clear_list(t_list **list)
+{
+	t_list	*buffer;
+	t_list	*buffer_next;
+
+	buffer = *list;
+	while (buffer->next)
+	{
+		buffer_next = buffer->next;
+		free(buffer);
+		buffer = buffer_next;
+	}
+	free(buffer);
 }

@@ -6,7 +6,7 @@
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/09 12:31:44 by abareux          ###   ########.fr       */
+/*   Updated: 2023/11/10 15:32:02 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,8 @@ t_list	*setup(int argc, char **argv);
 //function in list.c
 
 t_list	*create(int *data, int len);
+int		get_next_data(t_list *list, int data);
+void	clear_list(t_list **list);
 
 //function in list_utils.c
 
@@ -72,5 +74,17 @@ void	rrx(t_list **list);
 //function in solve.c
 
 void	solve(t_list **list_a, t_list **list_b);
+
+//function in find_cost.c
+
+int		cost_to_reset_rb(t_list *list);
+int		cost_to_reset_rrb(t_list *list);
+int		find_cost_rb(t_list *element, t_list *list_b);
+int		find_cost_rrb(t_list *element, t_list *list_b);
+
+//function in reset.c
+
+void	reset_rb(t_list **list);
+void	reset_rrb(t_list **list);
 
 #endif

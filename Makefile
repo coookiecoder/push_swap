@@ -1,4 +1,4 @@
-files = atoi check error list list_utils main setup swap push rotate solve
+files = atoi check error list list_utils main setup swap push rotate find_cost reset solve
 
 sources = $(foreach buffer, $(files), sources/$(buffer).c)
 
@@ -35,6 +35,6 @@ fclean: $(ft_printf)fclean clean
 re: $(ft_printf)re fclean all
 
 debug: all
-	$(CC) $(sources) $(ft_printf) $(CFLAGS) -o $(NAME) -g3
+	$(CC) $(sources) $(ft_printf) $(CFLAGS) -o $(NAME) -g3 -fsanitize=address
 
 .PHONY: all clean fclean re debug

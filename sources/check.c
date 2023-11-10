@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   check.c                                            :+:      :+:    :+:   */
+/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/09 10:40:25 by abareux          ###   ########.fr       */
+/*   Updated: the-day-it-was updated by UwU                                   */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	check(int argc, char **argv)
 			csr_argc++;
 		}
 		else if (char_allowed(*(*(argv + csr_argc) + csr_argv)))
-			csr_argv++;	
+			csr_argv++;
 		else if (char_allowed_sign(argv, csr_argc, csr_argv))
 			csr_argv++;
 		else

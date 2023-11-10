@@ -1,56 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   solve.c                                            :+:      :+:    :+:   */
+/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: 2023/11/09 13:10:00 by abareux          ###   ########.fr       */
+/*   Updated: the-day-it-was updated by UwU                                   */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-static
-int	cost_to_reset(t_list *list)
-{
-	int	cost;
-
-	while (list->next && list->data > list->next->data)
-		list = list->next;
-	if (!list->next)
-		return (0);
-	cost = 0;
-	while (list->next)
-	{
-		list = list->next;
-		cost++;
-	}
-	return (cost);
-}
-
-static
-int	find_cost(t_list *element, t_list *list_b)
-{
-	int	first;
-	int	last;
-	int	cost;
-
-	if (element->data > find_max(list_b))
-		return (cost_to_reset(list_b));
-	if (element->data < find_min(list_b))
-		return (cost_to_reset(list_b));
-	cost = 0;
-	first = list_b->data;
-	last = get_last_data(list_b, 0);
-	while (element->data < first && element->data > last)
-	{
-		first = last;
-		last = get_last_data(list_b, ++cost);
-	}
-	return (cost);
-}
 
 static
 int	find_cheapest(t_list **list_a, t_list **list_b)
@@ -60,15 +20,20 @@ int	find_cheapest(t_list **list_a, t_list **list_b)
 	int		cheapest_cost;
 	int		rotate_cost;
 
-	buffer = (*list_a)->next;
+	buffer = (*list_a);
 	cheapest = (*list_a)->data;
-	cheapest_cost = find_cost(*list_a, *list_b);
+	cheapest_cost = find_cost_rb(*list_a, *list_b);
 	rotate_cost = 0;
 	while (buffer && rotate_cost < cheapest_cost)
 	{
-		if (find_cost(buffer, *list_b) + rotate_cost++ < cheapest_cost)
+		if (find_cost_rb(buffer, *list_b) + rotate_cost < cheapest_cost)
 		{
-			cheapest_cost = find_cost(buffer, *list_b) + rotate_cost - 1;
+			cheapest_cost = find_cost_rb(buffer, *list_b) + rotate_cost - 1;
+			cheapest = buffer->data;
+		}
+		if (find_cost_rrb(buffer, *list_b) + rotate_cost++ < cheapest_cost)
+		{
+			cheapest_cost = find_cost_rrb(buffer, *list_b) + rotate_cost - 1;
 			cheapest = buffer->data;
 		}
 		buffer = buffer->next;
@@ -77,10 +42,36 @@ int	find_cheapest(t_list **list_a, t_list **list_b)
 }
 
 static
-void	do_cheapest(t_list **list_a, t_list **list_b)
+void	chose_move(t_list **list_a, t_list **list_b)
 {
 	int	first;
 	int	last;
+
+	first = (*list_b)->data;
+	last = get_last_data(*list_b, 0);
+	if (find_cost_rb(*list_a, *list_b) <= find_cost_rrb(*list_a, *list_b))
+	{
+		while ((*list_a)->data < first || (*list_a)->data > last)
+		{
+			rx(list_b);
+			write(1, "rb\n", 3);
+			first = (*list_b)->data;
+			last = get_last_data(*list_b, 0);
+		}
+		return ;
+	}
+	while ((*list_a)->data < first || (*list_a)->data > last)
+	{
+		rrx(list_b);
+		write(1, "rrb\n", 4);
+		first = (*list_b)->data;
+		last = get_last_data(*list_b, 0);
+	}
+}
+
+static
+void	do_cheapest(t_list **list_a, t_list **list_b)
+{
 	int	cheapest;
 
 	cheapest = find_cheapest(list_a, list_b);
@@ -93,34 +84,25 @@ void	do_cheapest(t_list **list_a, t_list **list_b)
 		return (reset_and_pb(list_a, list_b));
 	if ((*list_a)->data < find_min(*list_b))
 		return (reset_and_pb(list_a, list_b));
-	first = (*list_b)->data;
-	last = get_last_data(*list_b, 0);
-	while ((*list_a)->data < first && (*list_a)->data > last)
-	{
-		last = get_last_data(*list_b, 0);
-		rrx(list_b);
-		write(1, "rb\n", 3);
-	}
-	write(1, "rb\n", 4);
+	chose_move(list_a, list_b);
 	pb(list_a, list_b);
 	write(1, "pb\n", 3);
 }
 
 void	solve(t_list **list_a, t_list **list_b)
-{	
+{
 	pb(list_a, list_b);
 	write(1, "pb\n", 3);
 	pb(list_a, list_b);
 	write(1, "pb\n", 3);
 	while (*list_a)
 		do_cheapest(list_a, list_b);
-	while ((*list_b)->data < get_last_data(*list_b, 0))
-	{
-		rx(list_b);
-		write(1, "rb\n", 3);
-	}
+	if (cost_to_reset_rb(*list_b) < cost_to_reset_rrb(*list_b))
+		reset_rb(list_b);
+	else
+		reset_rrb(list_b);
 	while (*list_b)
-	{	
+	{
 		pa(list_a, list_b);
 		write(1, "pa\n", 3);
 	}
