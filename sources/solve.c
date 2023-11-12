@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                                            */
-/*   NOOT NOOT MOTHER FUCKER                      :#:  :#:         :#:  :#:   */
+/*   solve.c                                            :+:      :+:    :+:   */
 /*                                                :#:  :#::#     #::#:  :#:   */
 /*   By: an asshole who like to break thing       :#:  :#::#: # :#::#:  :#:   */
 /*                                                :##::##: :#:#:#: :##::##:   */
 /*   Created: the-day-it-was created by UwU        :####:  :##:##:  :####:    */
-/*   Updated: the-day-it-was updated by UwU                                   */
+/*   Updated: 2023/11/12 18:55:10 by abareux          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,10 +113,10 @@ int	solve(t_list **list_a, t_list **list_b)
 	pb(list_a, list_b);
 	write(1, "pb\n", 3);
 	if (get_len(*list_a) > 4)
-		{
-			pb(list_a, list_b);
-			write(1, "pb\n", 3);
-		}
+	{
+		pb(list_a, list_b);
+		write(1, "pb\n", 3);
+	}
 	while ((*list_a)->next->next && (*list_a)->next->next->next)
 		do_cheapest(list_a, list_b);
 	if (cost_to_reset_rb(*list_b) < cost_to_reset_rrb(*list_b))
