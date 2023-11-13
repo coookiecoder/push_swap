@@ -45,7 +45,7 @@ int	main(int argc, char **argv)
 	list_b = NULL;
 	left_rra = 0;
 	if (get_len(list_a) == 1 || sorted(list_a))
-		return (0);
+		return (clear_list(&list_a), 0);
 	if (get_len(list_a) == 2)
 	{
 		if (list_a->data > list_a->next->data)

@@ -58,3 +58,22 @@ int	ft_atoi(const char *nptr, int *cursor_nptr)
 		*cursor_nptr = *cursor_nptr + 1;
 	return (result * sign);
 }
+
+long int	ft_atoi_long(const char *nptr, int *cursor_nptr)
+{
+	int			cursor;
+	int			sign;
+	long int	result;
+
+	cursor = 0;
+	result = 0;
+	if (!ft_isdigit(*(nptr + cursor)))
+		ft_getsign(nptr + cursor, &sign, &cursor, cursor_nptr);
+	else if (ft_isdigit(*(nptr + cursor)))
+		sign = 1;
+	while (*(nptr + cursor) == '0')
+		cursor++;
+	while (ft_isdigit(*(nptr + cursor)))
+		result = (result * 10) + *((char *)nptr + cursor++) - '0';
+	return (result * sign);
+}

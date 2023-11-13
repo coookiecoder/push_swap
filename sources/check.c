@@ -38,6 +38,31 @@ int	char_allowed(int c)
 	return (0);
 }
 
+static
+void	check_max(char *number)
+{
+	int	useless;
+
+	useless = 0;
+	if (ft_atoi_long(number, &useless) > 2147483647)
+		error();
+}
+
+static
+void	check_number(int argc, char **argv)
+{
+	int	csr_argc;
+
+	csr_argc = 1;
+	while (csr_argc < argc)
+	{
+		if (ft_strlen(*(argv + csr_argc++)) > 10)
+			error();
+		if (ft_strlen(*(argv + csr_argc - 1)) == 10)
+			check_max(*(argv + csr_argc - 1));
+	}
+}
+
 void	check(int argc, char **argv)
 {
 	int		csr_argc;
@@ -60,5 +85,6 @@ void	check(int argc, char **argv)
 			error();
 	}
 	if (argc == 1)
-		error();
+		exit(0);
+	check_number(argc, argv);
 }
